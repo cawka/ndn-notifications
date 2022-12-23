@@ -4,6 +4,7 @@ require 'open-uri'
 require 'uri'
 require 'cgi'
 require 'mail'
+require 'date'
 
 config = YAML.load(File.open('config.yaml').read)
 
@@ -29,9 +30,31 @@ issues = template.css("#issues")[0]
 while node != hr2 do
   issues.add_child(node.dup)
 
-  puts node
+  #puts node
   node = node.next
 end
 html = template.to_html
 
-puts html
+date = Date.today
+date += 1
+
+c = config['mail']
+mail = Mail.new do
+  from c['from']
+  to   c['to']
+  subject "#{c['subject']} #{date.to_s}"
+
+  html_part do
+    content_type 'text/html; charset=UTF-8'
+    body html
+  end
+end
+
+mail.delivery_method :smtp, :address => c['address'],
+                            :port => c['port'],
+                            :domain => c['domain'],
+                            :user_name => c['user_name'],
+                            :password => c['password'],
+                            :enable_starttls_auto => true
+mail.deliver
+
