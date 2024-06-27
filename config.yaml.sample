@@ -1,0 +1,11 @@
+mail:
+  from: "noreply@named-data.net"
+  to:   "nfd-dev@lists.cs.ucla.edu"
+  subject: NDN Weekly Call
+  address: "YOUR.SMTP.SERVER"
+  domain:  "named-data.net"
+  port: 587
+  user_name: "login"
+  password: "password"
+
+source: "https://docs.google.com/document/d/1a8yXkYg6AZ6EafUbXsKDXgac_aDZPQU8t5Q3p2I1K5M/pub"

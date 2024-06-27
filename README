@@ -1,0 +1,3 @@
+This is a simple scripting to send out notifications using Google Doc as a source
+
+To start, create config.yaml using sample provided and it should work.
